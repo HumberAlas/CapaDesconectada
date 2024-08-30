@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatosLayer
 {
+    // Tabla Customer Obtenida de la base de datos
     public class customers
     {
         public string CompanyName { get; set; }
