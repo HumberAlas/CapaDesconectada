@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient; 
-using DatosLayer; 
+using DatosLayer;
+using System.Reflection;
 
 namespace CapaConexion
 {
@@ -40,6 +41,8 @@ namespace CapaConexion
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'northwindDataSet.Customers' Puede moverla o quitarla según sea necesario.
+            this.customersTableAdapter.Fill(this.northwindDataSet.Customers);
             // Configura el nombre de la aplicación y el tiempo de espera de la conexión a la base de datos
             DatosLayer.DataBase.ApplicationName = "Programacion 2 ejemplo";
             DatosLayer.DataBase.ConnetionTimeout = 30;
@@ -68,6 +71,70 @@ namespace CapaConexion
                 // Si no se encuentra el cliente, muestra un mensaje indicando que el ID no fue encontrado
                 MessageBox.Show("Id no encontrado");
             }
+        }
+
+        private void btnInsertar_Click(object sender, EventArgs e)
+        {
+            var nuevoCliente = new customers
+            {
+                CustomerID = tboxCustomerID.Text,
+                CompanyName = tboxCompanyName.Text,
+                ContactName = tboxContactName.Text,
+                ContactTitle = tboxContactTitle.Text,
+                Address = tboxAddress.Text,
+                City = tboxCity.Text
+            };
+            var resultado = 0;
+            if (validarCampoNull(nuevoCliente) == false)
+            {
+                resultado = customerRepository.InsertarCliente(nuevoCliente);
+            }
+            else
+            {
+                MessageBox.Show("Debe completar todos los campos por favor" + resultado);
+            }
+            /*
+            if (nuevoCliente.CustomerID == "") {
+                MessageBox.Show("El Id en el usuario debe de completarse");
+               return;    
+            }
+
+            if (nuevoCliente.ContactName == "")
+            {
+                MessageBox.Show("El nombre de usuario debe de completarse");
+                return;
+            }
+            
+            if (nuevoCliente.ContactTitle == "")
+            {
+                MessageBox.Show("El contacto de usuario debe de completarse");
+                return;
+            }
+            if (nuevoCliente.Address == "")
+            {
+                MessageBox.Show("la direccion de usuario debe de completarse");
+                return;
+            }
+            if (nuevoCliente.City == "")
+            {
+                MessageBox.Show("La ciudad de usuario debe de completarse");
+                return;
+            }
+
+            */
+        }
+        public Boolean validarCampoNull(Object objeto)
+        {
+
+            foreach (PropertyInfo property in objeto.GetType().GetProperties())
+            {
+                object value = property.GetValue(objeto, null);
+                if ((string)value == "")
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
