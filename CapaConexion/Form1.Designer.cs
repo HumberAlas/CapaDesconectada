@@ -52,6 +52,7 @@
             this.northwindDataSet = new CapaConexion.NorthwindDataSet();
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customersTableAdapter = new CapaConexion.NorthwindDataSetTableAdapters.CustomersTableAdapter();
+            this.btnModificar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.northwindDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -219,7 +220,7 @@
             // btnInsertar
             // 
             this.btnInsertar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsertar.Location = new System.Drawing.Point(1201, 498);
+            this.btnInsertar.Location = new System.Drawing.Point(1093, 498);
             this.btnInsertar.Name = "btnInsertar";
             this.btnInsertar.Size = new System.Drawing.Size(178, 45);
             this.btnInsertar.TabIndex = 17;
@@ -259,11 +260,23 @@
             // 
             this.customersTableAdapter.ClearBeforeFill = true;
             // 
+            // btnModificar
+            // 
+            this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.Location = new System.Drawing.Point(1287, 498);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(178, 45);
+            this.btnModificar.TabIndex = 20;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1502, 673);
+            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.tboxContactName);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnInsertar);
@@ -321,6 +334,7 @@
         private NorthwindDataSet northwindDataSet;
         private System.Windows.Forms.BindingSource customersBindingSource;
         private NorthwindDataSetTableAdapters.CustomersTableAdapter customersTableAdapter;
+        private System.Windows.Forms.Button btnModificar;
     }
 }
 
